@@ -1,0 +1,287 @@
+/* ============================================================
+   scenes.css — Geo & Joicy Wedding
+   Cream · Ivory · Gold · Sage Green
+   ============================================================ */
+
+/* ============================================================
+   1 · BASE SCENE  (flow sections)
+   ============================================================ */
+.scene{
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  overflow:hidden;
+  color:var(--ink);
+}
+
+.section-bg,
+picture.section-bg{
+  display:block;
+  width:100%;height:100%;
+  pointer-events:none;user-select:none;
+}
+picture.section-bg img,
+img.section-bg{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  display:block;
+}
+.section-overlay{
+  z-index:1;
+  pointer-events:none;
+}
+
+/* Default section content (flow sections) */
+.section-content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width:68rem;
+  margin-inline:auto;
+  padding:clamp(2.4rem,7vw,5.5rem) clamp(1.1rem,5.5vw,2.75rem);
+  box-sizing:border-box;
+}
+
+/* Wide children */
+.section-content > .facts,
+.section-content > .couple-grid,
+.section-content > .family-grid,
+.section-content > .venue-grid,
+.section-content > .photo-wall,
+.section-content > .photo-wall-stage,
+.section-content > .couple-photo-wrap{
+  max-width:68rem;
+  width:100%;
+  margin-inline:auto;
+}
+
+/* Narrow children */
+.section-content > .sec-head,
+.section-content > .lede,
+.section-content > .countdown,
+.section-content > .tl,
+.section-content > .verse-card,
+.section-content > .finale-stage,
+.section-content > .finale-sub,
+.section-content > .finale-blessing,
+.section-content > .note-box{
+  width:100%;
+  max-width:42rem;
+  margin-inline:auto;
+}
+
+.section-content--center{
+  text-align:center;
+  justify-content:center;
+  align-items:center;
+  min-height:min(100svh, 40rem);
+}
+
+/* ============================================================
+   2 · TONE PLATES
+   ============================================================ */
+.scene--ivory  { background:#F7F1E4; color:var(--ink); }
+.scene--beige  { background:#EDE3CE; color:var(--ink); }
+.scene--dark   { background:#121A0E; color:#F3EDE0;    }
+.scene--finale { background:#0E0C08; color:#F3EDE0;    }
+
+.scene--ivory .section-overlay{
+  background:
+    radial-gradient(120% 70% at 50% 0%,rgba(255,255,255,.45),transparent 55%),
+    linear-gradient(180deg,rgba(251,248,240,.2),rgba(251,248,240,.55));
+}
+.scene--beige .section-overlay{
+  background:
+    radial-gradient(90% 60% at 50% 0%,rgba(240,230,210,.35),transparent 60%),
+    linear-gradient(180deg,rgba(237,227,206,.15),rgba(237,227,206,.5));
+}
+.scene--dark .section-overlay{
+  background:
+    radial-gradient(90% 55% at 50% 0%,rgba(90,122,90,.14),transparent 62%),
+    linear-gradient(180deg,rgba(18,26,14,.2),rgba(18,26,14,.55));
+}
+.scene--finale .section-overlay{
+  background:
+    radial-gradient(80% 55% at 50% 45%,rgba(184,148,42,.12),transparent 66%),
+    linear-gradient(180deg,rgba(14,12,8,.1),rgba(14,12,8,.65));
+}
+
+.scene--dark .sec-title,
+.scene--finale .sec-title   { color:#F5EFE2; }
+.scene--dark .kicker,
+.scene--finale .kicker      { color:var(--gold-lt); opacity:.9; }
+
+/* ============================================================
+   3 · FLOW SCENES  (background image is absolutely positioned)
+   ============================================================ */
+.scene--flow{ display:block; min-height:auto; }
+.scene--flow > .section-bg{
+  position:absolute; inset:0; width:100%; height:100%; z-index:0;
+}
+.scene--flow > .section-overlay{
+  position:absolute; inset:0; z-index:1;
+}
+.scene--flow > .section-content{ position:relative; z-index:2; }
+
+/* ============================================================
+   4 · FULL-SCREEN FLEX SCENES  (landing + hero)
+
+   Layout order (top → bottom):
+     [hero-bless--top]    flex:0  — "With the Blessings…"
+     [section-content]    flex:1  — names + date, vertically centred
+     [hero-subtitle]      flex:0  — church · time
+     [scroll-indicator]   flex:0  — Scroll ↓
+
+   All children are relative, BG + overlay are absolute.
+   ============================================================ */
+.scene--screen{
+  position:relative;
+  width:100%;
+  min-height:100svh; min-height:100vh;
+  height:100svh; height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow:hidden;
+  background:#EBE0C6;
+}
+
+/* BG image + overlay — fill 100% behind everything */
+.scene--screen > .section-bg,
+.scene--screen > picture.section-bg,
+.scene--screen > .section-overlay{
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  z-index:0;
+}
+.scene--screen > .section-overlay{ z-index:1; }
+.scene--screen > picture.section-bg{ display:block; }
+.scene--screen > picture.section-bg > img,
+.scene--screen > img.section-bg{
+  width:100%; height:100%;
+  object-fit:cover; object-position:center center;
+}
+
+/* ── TOP BLESSING ──────────────────────────────────────────── */
+.scene--screen > .hero-bless--top{
+  position:relative;
+  z-index:3;
+  flex:0 0 auto;
+  width:100%;
+  text-align:center;
+  padding-top:max(clamp(52px,9vh,72px), env(safe-area-inset-top, 0px));
+  padding-bottom:clamp(6px,1.5vh,14px);
+  padding-inline:clamp(16px,6vw,48px);
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+
+/* ── CENTRE CONTENT ────────────────────────────────────────── */
+.scene--screen > .section-content{
+  position:relative;
+  z-index:2;
+  flex:1 1 auto;           /* fills all leftover vertical space   */
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:clamp(6px,1.5vh,16px) clamp(16px,6vw,48px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center; /* names + date sit in the middle       */
+  align-items:center;
+  text-align:center;
+  box-sizing:border-box;
+}
+
+/* ── SUBTITLE (venue · time) ───────────────────────────────── */
+.scene--screen > .hero-subtitle{
+  position:relative;
+  z-index:3;
+  flex:0 0 auto;
+  text-align:center;
+  padding:0 clamp(16px,5vw,48px);
+  margin:0 0 clamp(14px,2.5vh,24px);
+}
+
+/* ── SCROLL INDICATOR ──────────────────────────────────────── */
+.scene--screen > .scroll-indicator{
+  position:relative;
+  z-index:3;
+  flex:0 0 auto;
+  margin-bottom:max(clamp(10px,2.5vh,24px), env(safe-area-inset-bottom, 0px));
+  opacity:0;
+  transition:opacity .6s ease .3s;
+}
+
+/* Overlay tint for hero */
+.scene--hero .section-overlay{
+  background:
+    radial-gradient(70% 40% at 50% 18%,rgba(248,240,220,.10),transparent 70%),
+    linear-gradient(180deg,rgba(248,242,224,.04) 0%,transparent 20%,
+      transparent 72%,rgba(248,238,218,.24) 100%);
+}
+
+/* ============================================================
+   5 · BREAKPOINTS  (only adjust inline padding on wide screens)
+   ============================================================ */
+@media (min-aspect-ratio: 1/1){
+  /* landscape / desktop: pull sides inward so text isn't edge-to-edge */
+  .scene--screen > .hero-bless--top,
+  .scene--screen > .section-content,
+  .scene--screen > .hero-subtitle{
+    padding-inline:clamp(48px,18vw,240px);
+  }
+  .scene--screen > picture.section-bg > img,
+  .scene--screen > img.section-bg{ object-position:center 42%; }
+}
+@media (max-height:480px) and (orientation:landscape){
+  /* short landscape — compress vertical padding */
+  .scene--screen > .hero-bless--top{ padding-top:8px; padding-bottom:4px; }
+  .scene--screen > .scroll-indicator{ margin-bottom:6px; }
+}
+
+/* ============================================================
+   6 · HERO LOAD-GATE
+   ============================================================ */
+.scene--hero{
+  opacity:0; visibility:hidden;
+  transition:opacity .55s ease, visibility 0s linear .55s;
+}
+.scene--hero.loaded{
+  opacity:1; visibility:visible;
+  transition:opacity .55s ease, visibility 0s;
+}
+.scene--hero > .section-bg,
+.scene--hero > picture.section-bg,
+.scene--hero > picture.section-bg > img{
+  opacity:0; transition:opacity .55s ease;
+}
+.scene--hero.loaded > .section-bg,
+.scene--hero.loaded > picture.section-bg,
+.scene--hero.loaded > picture.section-bg > img{ opacity:1; }
+
+/* section-content (names+date) fades up after hero loads */
+.scene--hero > .section-content{
+  opacity:0;
+  transform:translate3d(0,14px,0);
+  transition:opacity .7s var(--ease) .15s, transform .7s var(--ease) .15s;
+}
+.scene--hero.loaded.text-ready > .section-content{ opacity:1; transform:none; }
+
+/* subtitle + scroll also appear with content */
+.scene--hero > .hero-subtitle{  opacity:0; transition:opacity .7s var(--ease) .25s; }
+.scene--hero > .scroll-indicator{ opacity:0; transition:opacity .7s ease .35s; }
+.scene--hero.loaded.text-ready > .hero-subtitle{ opacity:.85; }
+.scene--hero.loaded.text-ready > .scroll-indicator{ opacity:1; }
+
+/* bless line at top fades in independently */
+.scene--hero > .hero-bless--top{
+  opacity:0; transition:opacity .7s var(--ease) .05s;
+}
+.scene--hero.loaded > .hero-bless--top{ opacity:1; }
